@@ -4,7 +4,7 @@
 ## **Description**  
 This project focuses on analyzing motorcycle part sales data to uncover trends, calculate key performance indicators (KPIs), and provide actionable insights. Using SQL, the dataset is cleaned, transformed, and queried to generate monthly and daily sales trends, customer behaviors, and performance metrics.
 
-[Motorcycle_Powerbi](https://github.com/user-attachments/assets/4fd53d0b-46c4-4dc5-9367-1d8cf642a6ea)
+![Motorcycle_Powerbi](https://github.com/user-attachments/assets/a2143acc-6677-4442-8ee2-d2ab15893bc7)
 
 ---
 
