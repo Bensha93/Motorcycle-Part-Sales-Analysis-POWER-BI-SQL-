@@ -1,107 +1,112 @@
 
-# Motorcycle Part Sales Analysis
+# 🏍️ Motorcycle Part Sales Analysis
 
-## **Description**  
-This project focuses on analyzing motorcycle part sales data to uncover trends, calculate key performance indicators (KPIs), and provide actionable insights. Using SQL, the dataset is cleaned, transformed, and queried to generate monthly and daily sales trends, customer behaviors, and performance metrics.
-
-![Motorcycle_Powerbi](https://github.com/user-attachments/assets/a2143acc-6677-4442-8ee2-d2ab15893bc7)
+This project delivers a comprehensive analysis of motorcycle part sales using SQL and Power BI. It identifies key sales trends, performance metrics, and actionable business insights to support data-driven decision-making.
 
 ---
 
-## **Table of Contents**  
-1. **[Project Overview](#project-overview)**  
-2. **[Key Features](#key-features)**  
-3. **[SQL Highlights](#sql-highlights)**  
-4. **[Insights and Outcomes](#insights-and-outcomes)**  
-5. **[How to Use](#how-to-use)**  
-6. **[Tools and Technologies](#tools-and-technologies)**  
-7. **[Future Enhancements](#future-enhancements)**  
-8. **[License](#license)**  
+## 📊 Project Overview
+
+The analysis focuses on:
+
+* Cleaning and transforming the `motorcycle_part_sales` dataset.
+* Analyzing monthly and daily sales trends.
+* Investigating customer behavior and product performance.
+* Evaluating key performance indicators (KPIs) such as Month-over-Month (MoM) growth.
+* Comparing weekday vs. weekend sales patterns.
+* Visualizing results using **Power BI**.
 
 ---
 
-## **Project Overview**  
-The project involves:  
-- **Data Preparation**: Cleaning and standardizing the `motorcycle_part_sales` dataset.  
-- **Sales Analysis**: Identifying total sales, orders, and quantity trends on monthly and daily levels.  
-- **Trend Analysis**: Understanding weekday vs. weekend performance, comparing daily sales to averages, and analyzing sales by location and category.  
-- **KPI Calculation**: Tracking Month-over-Month (MOM) growth in sales, orders, and quantities.  
+## ⚙️ Tools & Technologies
+
+* **SQL** – Data preparation and querying (MySQL/PostgreSQL compatible)
+* **Power BI** – Data visualization and dashboard creation
+* **Excel/CSV** – Optional data import/export formats
 
 ---
 
-## **Key Features**  
-- **Data Cleaning**: Handled null values, standardized data types, and removed unnecessary columns.  
-- **Monthly Sales Trends**: Calculated total sales, MOM differences, and growth percentages.  
-- **Daily Performance**: Analyzed daily sales trends and their comparison with averages.  
-- **Category Insights**: Explored sales by product line, customer type, and warehouse location.  
-- **Weekday vs. Weekend Analysis**: Highlighted performance differences based on the day of the week.  
+## 🔧 Key Features
+
+* **Data Cleaning**: Null handling, type standardization, and column pruning
+* **Monthly Sales Trends**: Sales totals, MoM growth calculations, trend analysis
+* **Daily Sales Analysis**: Identifies top-performing days; compares daily vs. average sales
+* **Category Insights**: Revenue breakdown by product line, customer type, and warehouse
+* **Weekday vs. Weekend Patterns**: Assesses operational performance across the week
 
 ---
 
-## **SQL Highlights**  
-### **Monthly Sales Calculation**  
+## 📌 SQL Highlights
+
+**Monthly Sales Summary:**
+
 ```sql
 SELECT  
     MONTH(date) AS month_sales,  
     ROUND(SUM(unit_price * quantity)) AS Total_Sales  
 FROM motorcycle_part_sales  
 GROUP BY MONTH(date);
-```  
+```
 
-### **MOM Growth Analysis**  
+**MoM Growth Calculation:**
+
 ```sql
 SELECT  
     MONTH(date) AS month,  
     ROUND(SUM(unit_price * quantity)) AS total_sales,  
     (SUM(unit_price * quantity) - LAG(SUM(unit_price * quantity), 1)  
-    OVER (ORDER BY MONTH(date))) / LAG(SUM(unit_price * quantity), 1)  
-    OVER (ORDER BY MONTH(date)) * 100 AS mom_increase_percentage  
+     OVER (ORDER BY MONTH(date))) / LAG(SUM(unit_price * quantity), 1)  
+     OVER (ORDER BY MONTH(date)) * 100 AS mom_increase_percentage  
 FROM motorcycle_part_sales  
 GROUP BY MONTH(date);
-```  
-
-### **Daily Sales Trends**  
-```sql
-SELECT  
-    DAY(date) AS day_of_month,  
-    ROUND(SUM(unit_price * quantity), 1) AS total_sales  
-FROM motorcycle_part_sales  
-WHERE MONTH(date) = 6  
-GROUP BY DAY(date);
-```  
+```
 
 ---
 
-## **Insights and Outcomes**  
-- **Seasonal Trends**: MOM growth highlighted periods of peak sales.  
-- **Daily Performance**: Certain days consistently outperformed others, with higher sales on weekends.  
-- **Warehouse Insights**: High-performing warehouses were identified, aiding resource allocation.  
-- **Category Analysis**: Helped understand customer behavior across product lines and client types.  
+## 📈 Insights & Outcomes
+
+* **Seasonal Trends**: Peak sales months identified through MoM tracking
+* **Customer Behavior**: Weekends consistently outperformed weekdays in sales volume
+* **Warehouse Optimization**: Top-performing warehouses revealed, supporting strategic allocation
+* **Product Line Analysis**: Customer preferences and profitability trends discovered by category
 
 ---
 
-## **How to Use**  
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/your-username/motorcycle-part-sales-analysis.git
-   ```  
-2. Load the `motorcycle_part_sales` table into your SQL database.  
-3. Run the SQL queries in order to:  
-   - Clean and transform the data.  
-   - Generate monthly and daily sales reports.  
-   - Extract insights on customer behavior and product performance.  
+## ✅ Recommendations
+
+Based on the analysis:
+
+1. **Optimize Weekend Operations**: Enhance staffing and stock availability on weekends to capitalize on higher sales.
+2. **Boost High-Performing Warehouses**: Allocate more inventory and marketing to top-performing locations.
+3. **Expand Popular Categories**: Focus promotions and upselling on top-selling part categories.
+4. **Monitor MoM Trends**: Regularly track growth metrics to detect early signs of performance shifts.
+5. **Implement Real-Time Dashboards**: Use Power BI to automate daily sales tracking and decision support.
 
 ---
 
-## **Tools and Technologies**  
-- **SQL**: For data cleaning and querying.  
-- **Database**: Tested with MySQL and PostgreSQL.  
-- **Visualization**: (Optional) Use tools like Tableau or Power BI to create charts and dashboards.  
+## 🧪 How to Use
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/motorcycle-part-sales-analysis.git
+```
+
+2. Load the `motorcycle_part_sales` data into your SQL environment.
+3. Run the SQL scripts in the `/sql` folder to:
+
+   * Clean and transform data
+   * Calculate KPIs and trends
+4. Open the Power BI report (`.pbix` file) to explore dashboards and visualizations.
 
 ---
 
-## **Future Enhancements**  
-- Automate sales and performance reporting with stored procedures.  
-- Build real-time dashboards for trend monitoring.  
-- Expand analysis to include profit and customer segmentation.  
+## 🚀 Future Enhancements
+
+* Automate SQL KPIs with stored procedures
+* Add profit margin and customer segmentation metrics
+* Integrate forecasting models for sales prediction
+* Enhance Power BI interactivity with slicers and drill-throughs
+
+---
 
